@@ -1,0 +1,184 @@
+= MediaWiki 1.44 =
+
+== MediaWiki 1.44.0-PRERELEASE ==
+
+THIS IS NOT A RELEASE YET
+
+MediaWiki 1.44 is an alpha-quality development branch, and is not recommended
+for use in production.
+
+== Upgrading notes for 1.44 ==
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed per-version upgrade instructions from the
+oldest supported upgrading version, MediaWiki 1.35.
+
+Some specific notes for MediaWiki 1.44 upgrades are below:
+
+* …
+
+For notes on 1.43.x and older releases, see HISTORY.
+
+=== Configuration changes for system administrators in 1.44 ===
+
+* …
+
+==== New configuration ====
+
+* (T377829) $wgAutopromoteOnceRCExcludedGroups - Defaults to an empty list, can
+  be used to define a denylist of user group names. One-shot autopromotions
+  into these groups will never result in an RC entry, even if
+  $wgAutopromoteOnceLogInRC is true, as long as they were the only new groups
+  the user was autopromoted into.
+* …
+
+==== Changed configuration ====
+
+* …
+
+==== Removed configuration ====
+
+* wgResourceLoaderUseObjectCacheForDeps, deprecated in 1.43, has been removed.
+  It is now always enabled (T343492).
+* …
+
+=== New user-facing features in 1.44 ===
+
+* …
+
+=== New features for sysadmins in 1.44 ===
+
+* (T267477) Users with rename userright can now rename themselves through
+  [[Special:RenameUser]].
+* …
+
+=== New developer features in 1.44 ===
+
+* The AuthenticationAttemptThrottled hook was added.
+* …
+
+=== External library changes in 1.44 ===
+
+==== New external libraries ====
+
+* …
+
+===== New development-only external libraries =====
+
+* …
+
+==== Changed external libraries ====
+
+* Updated codex, codex-design-tokens and codex-icons
+  from v1.14.0 to v1.16.0.
+* Updated wikimedia/bcp-47-code from 2.0.0 to 2.0.1.
+* Updated wikimedia/timestamp from 4.1.1 to 4.2.0.
+* …
+
+===== Changed development-only external libraries =====
+* Updated nikic/php-parser from ^4.10.2 to ^5.3.1.
+* …
+
+==== Removed external libraries ====
+
+* …
+
+=== Bug fixes in 1.44 ===
+
+* …
+
+=== Action API changes in 1.44 ===
+
+* …
+
+=== Action API internal changes in 1.44 ===
+
+* …
+
+=== Languages updated in 1.44 ===
+MediaWiki supports over 350 languages. Many localisations are updated regularly.
+Below only new and removed languages are listed, as well as changes to languages
+because of Phabricator reports.
+
+* …
+
+=== Breaking changes in 1.44 ===
+
+* The methods MessageValue::objectParams(), Message::objectParams()
+  and Message::objectParam(), deprecated in 1.43, have been removed.
+* The UserGroupMembershipParam class, deprecated in 1.43, has been removed.
+* The ParamType::OBJECT constant, deprecated in 1.43, has been removed.
+* The MediaWiki\Message\Converter class, deprecated in 1.43, has been removed.
+  Use MessageValue::newFromSpecifier or Message::newFromSpecifier
+  instead (T358779).
+* The ParsoidOutputAccess class marked @unstable from creation and
+  deprecated with all of its methods in 1.43, has been removed.
+* IDatabase::onAtomicSectionCancel() has been removed without deprecation
+  as it's completely unused.
+* …
+
+=== Deprecations in 1.44 ===
+
+* Various static methods on ChangeTags, deprecated since 1.41, each now emit
+  deprecation warnings. Use service access to the ChangeTagsStore instead:
+  addTags(), defineTag(), deleteTagEverywhere(), getDisplayTableName(),
+  getSoftwareTags(), getTags(), getTagsWithData(), listDefinedTags(),
+  listExplicitlyDefinedTags(), listSoftwareActivatedTags(),
+  listSoftwareDefinedTags(), makeTagSummarySubquery(), modifyDisplayQuery(),
+  purgeTagCacheAll(), tagUsageStatistics(), and updateTags().
+* Maintenance::beginTransaction(), Maintenance::commitTransaction(),
+  Maintenance::rollbackTransaction(), and Maintenance::waitForReplication()
+  are now deprecated. Use Maintenance::*TransactionRound() instead.
+* ...
+* …
+
+=== Other changes in 1.44 ===
+* The ArticleProtect and ArticleProtectComplete hooks are now called when
+  WikiPage::doUpdateRestrictions is called to protect a non-existing
+  title.
+* …
+
+== Compatibility ==
+
+MediaWiki 1.44 requires PHP 8.1.0 or later and the following PHP extensions:
+
+* ctype
+* dom
+* fileinfo
+* iconv
+* intl
+* json
+* mbstring
+* xml
+
+MariaDB is the recommended database software. MySQL, PostgreSQL, or SQLite can
+be used instead, but support for them is somewhat less mature.
+
+The supported versions are:
+
+* MariaDB 10.3 or higher
+* MySQL 5.7.0 or higher
+* PostgreSQL 10 or later
+* SQLite 3.8.0 or later
+
+== Online documentation ==
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+  <https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation>
+
+== Mailing list ==
+A mailing list is available for MediaWiki user support and discussion:
+
+  <https://lists.wikimedia.org/postorius/lists/mediawiki-l.lists.wikimedia.org/>
+
+A low-traffic announcements-only list is also available:
+
+  <https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/>
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+There's usually someone online in #mediawiki on irc.libera.chat.
